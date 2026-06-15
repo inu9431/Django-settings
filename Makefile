@@ -28,7 +28,7 @@ shell:
 	docker compose exec web /bin/bash
 
 test:
-	docker compose exec web uv run pytest -v --cov=app --cov-report=term
+	docker compose exec web uv run pytest -v --cov=. --cov-report=term
 
 lint:
 	docker compose exec web uv run black --check .

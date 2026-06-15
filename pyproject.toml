@@ -5,6 +5,7 @@ description = "Django project with Docker and CI/CD"
 requires-python = ">=3.11"
 dependencies = [
     "django>=5.0",
+    "django-environ>=0.11",
     "psycopg2-binary>=2.9",
     "gunicorn>=21.2",
 ]
