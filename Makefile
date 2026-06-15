@@ -31,12 +31,10 @@ test:
 	docker compose exec web uv run pytest -v --cov=. --cov-report=term
 
 lint:
-	docker compose exec web uv run black --check .
-	docker compose exec web uv run isort --check-only .
+	docker compose exec web uv run ruff check .
 
 format:
-	docker compose exec web uv run black .
-	docker compose exec web uv run isort .
+	docker compose exec web uv run ruff format .
 
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +

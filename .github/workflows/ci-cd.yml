@@ -39,16 +39,21 @@ jobs:
         run: |
           echo "DEBUG=True" > .env
           echo "SECRET_KEY=test-key" >> .env
-          echo "DATABASE_URL=postgres://test_user:test_password@localhost:5432/test_db" >> .env
+          echo "ALLOWED_HOSTS=localhost,127.0.0.1" >> .env
+          echo "DB_HOST=localhost" >> .env
+          echo "DB_PORT=5432" >> .env
+          echo "DB_NAME=test_db" >> .env
+          echo "DB_USER=test_user" >> .env
+          echo "DB_PASSWORD=test_password" >> .env
 
-      - name: Run Black check
-        run: uv run black --check .
+      - name: Run ruff check
+        run: uv run ruff check .
 
-      - name: Run isort check
-        run: uv run isort --check-only .
+      - name: Run ruff format check
+        run: uv run ruff format --check .
 
       - name: Run tests with coverage
-        run: uv run pytest -v --cov=app --cov-report=xml --cov-report=term
+        run: uv run pytest -v --cov=. --cov-report=xml --cov-report=term
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
